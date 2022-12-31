@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/dankreiger/validate-expo-config/compare/v1.0.1...v1.0.2) (2022-12-31)
+
+
+### Bug Fixes
+
+* fix ios type ([#7](https://github.com/dankreiger/validate-expo-config/issues/7)) ([6326f07](https://github.com/dankreiger/validate-expo-config/commit/6326f07aa10f9fa3135225c37aa8810f52885dd4))
+
 ## [1.0.1](https://github.com/dankreiger/validate-expo-config/compare/v1.0.0...v1.0.1) (2022-12-31)
 
 
