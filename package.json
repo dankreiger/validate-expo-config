@@ -1,0 +1,66 @@
+{
+  "name": "@dankreiger/validate-expo-config",
+  "version": "0.1.0",
+  "description": "Tools for validating Expo app configurations.",
+  "keywords": [
+    "expo",
+    "tools",
+    "config",
+    "validation",
+    "zod"
+  ],
+  "homepage": "https://githubc.com/dankreiger/validate-expo-config#readme",
+  "license": "ISC",
+  "author": "Dan Kreiger",
+  "main": "dist/index.js",
+  "unpkg": "dist/index.global.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "scripty",
+    "commit": "scripty",
+    "commit:protect": "scripty",
+    "dev": "scripty",
+    "docs": "scripty",
+    "format": "scripty",
+    "lint": "scripty",
+    "release": "scripty",
+    "size": "scripty",
+    "size:analyze": "scripty"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/prompt-cli": "^17.3.0",
+    "@expo/config-types": "^47.0.0",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.7",
+    "@semantic-release/npm": "^9.0.1",
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@size-limit/webpack": "^8.1.0",
+    "@size-limit/webpack-why": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "docs-ts": "^0.7.0",
+    "eslint": "^8.31.0",
+    "lefthook": "^1.2.6",
+    "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
+    "scripty": "^2.1.1",
+    "semantic-release": "^19.0.5",
+    "size-limit": "^8.1.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  }
+}

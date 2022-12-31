@@ -1,0 +1,6 @@
+{
+  "projectHomepage": "https://github.com/dankreiger/validate-expo-config",
+  "srcDir": "src",
+  "outDir": "docs",
+  "exclude": ["src/index.ts", "src/main.assert.ts", "src/schemas/index.ts"]
+}
