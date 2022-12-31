@@ -136,9 +136,13 @@ export const ExpoConfigSchema = z.object({
  *   console.log('The config object is invalid:', validationResult);
  * }
  */
-export function validateExpoConfig(
-  config: ExpoConfig,
-  method: 'parse' | 'safeParse' = 'parse'
-) {
-  return ExpoConfigSchema[method](config);
+export function validateExpoConfig(config: ExpoConfig) {
+  if (!config) {
+    return false;
+  }
+  const result = ExpoConfigSchema.safeParse(config);
+  if (result.success) {
+    return result.data;
+  }
+  throw result.error;
 }

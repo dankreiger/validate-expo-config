@@ -171,35 +171,37 @@ export declare const ExpoConfigSchema: z.ZodObject<
           usesIcloudStorage: z.ZodOptional<z.ZodBoolean>
           usesAppleSignIn: z.ZodOptional<z.ZodBoolean>
           accessesContactNotes: z.ZodOptional<z.ZodBoolean>
-          splash: z.ZodIntersection<
+          splash: z.ZodOptional<
             z.ZodIntersection<
-              z.ZodRecord<z.ZodString, z.ZodAny>,
+              z.ZodIntersection<
+                z.ZodRecord<z.ZodString, z.ZodAny>,
+                z.ZodObject<
+                  {
+                    backgroundColor: z.ZodOptional<z.ZodString>
+                    resizeMode: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<'cover'>, z.ZodLiteral<'contain'>]>>
+                    image: z.ZodOptional<z.ZodString>
+                  },
+                  'strip',
+                  z.ZodTypeAny,
+                  {
+                    backgroundColor?: string | undefined
+                    resizeMode?: 'cover' | 'contain' | undefined
+                    image?: string | undefined
+                  },
+                  {
+                    backgroundColor?: string | undefined
+                    resizeMode?: 'cover' | 'contain' | undefined
+                    image?: string | undefined
+                  }
+                >
+              >,
               z.ZodObject<
-                {
-                  backgroundColor: z.ZodOptional<z.ZodString>
-                  resizeMode: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<'cover'>, z.ZodLiteral<'contain'>]>>
-                  image: z.ZodOptional<z.ZodString>
-                },
+                { tabletImage: z.ZodOptional<z.ZodString> },
                 'strip',
                 z.ZodTypeAny,
-                {
-                  backgroundColor?: string | undefined
-                  resizeMode?: 'cover' | 'contain' | undefined
-                  image?: string | undefined
-                },
-                {
-                  backgroundColor?: string | undefined
-                  resizeMode?: 'cover' | 'contain' | undefined
-                  image?: string | undefined
-                }
+                { tabletImage?: string | undefined },
+                { tabletImage?: string | undefined }
               >
-            >,
-            z.ZodObject<
-              { tabletImage: z.ZodOptional<z.ZodString> },
-              'strip',
-              z.ZodTypeAny,
-              { tabletImage?: string | undefined },
-              { tabletImage?: string | undefined }
             >
           >
           jsEngine: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<'hermes'>, z.ZodLiteral<'jsc'>]>>
@@ -226,6 +228,13 @@ export declare const ExpoConfigSchema: z.ZodObject<
         z.ZodTypeAny,
         {
           backgroundColor?: string | undefined
+          splash?:
+            | (Record<string, any> & {
+                backgroundColor?: string | undefined
+                resizeMode?: 'cover' | 'contain' | undefined
+                image?: string | undefined
+              } & { tabletImage?: string | undefined })
+            | undefined
           config?:
             | {
                 branch?: { apiKey?: string | undefined } | undefined
@@ -257,14 +266,16 @@ export declare const ExpoConfigSchema: z.ZodObject<
           accessesContactNotes?: boolean | undefined
           jsEngine?: 'hermes' | 'jsc' | undefined
           runtimeVersion?: string | { policy: 'sdkVersion' | 'nativeVersion' | 'appVersion' } | undefined
-          splash: Record<string, any> & {
-            backgroundColor?: string | undefined
-            resizeMode?: 'cover' | 'contain' | undefined
-            image?: string | undefined
-          } & { tabletImage?: string | undefined }
         },
         {
           backgroundColor?: string | undefined
+          splash?:
+            | (Record<string, any> & {
+                backgroundColor?: string | undefined
+                resizeMode?: 'cover' | 'contain' | undefined
+                image?: string | undefined
+              } & { tabletImage?: string | undefined })
+            | undefined
           config?:
             | {
                 branch?: { apiKey?: string | undefined } | undefined
@@ -296,11 +307,6 @@ export declare const ExpoConfigSchema: z.ZodObject<
           accessesContactNotes?: boolean | undefined
           jsEngine?: 'hermes' | 'jsc' | undefined
           runtimeVersion?: string | { policy: 'sdkVersion' | 'nativeVersion' | 'appVersion' } | undefined
-          splash: Record<string, any> & {
-            backgroundColor?: string | undefined
-            resizeMode?: 'cover' | 'contain' | undefined
-            image?: string | undefined
-          } & { tabletImage?: string | undefined }
         }
       >
     >
@@ -1227,6 +1233,13 @@ export declare const ExpoConfigSchema: z.ZodObject<
     ios?:
       | {
           backgroundColor?: string | undefined
+          splash?:
+            | (Record<string, any> & {
+                backgroundColor?: string | undefined
+                resizeMode?: 'cover' | 'contain' | undefined
+                image?: string | undefined
+              } & { tabletImage?: string | undefined })
+            | undefined
           config?:
             | {
                 branch?: { apiKey?: string | undefined } | undefined
@@ -1258,11 +1271,6 @@ export declare const ExpoConfigSchema: z.ZodObject<
           accessesContactNotes?: boolean | undefined
           jsEngine?: 'hermes' | 'jsc' | undefined
           runtimeVersion?: string | { policy: 'sdkVersion' | 'nativeVersion' | 'appVersion' } | undefined
-          splash: Record<string, any> & {
-            backgroundColor?: string | undefined
-            resizeMode?: 'cover' | 'contain' | undefined
-            image?: string | undefined
-          } & { tabletImage?: string | undefined }
         }
       | undefined
     web?:
@@ -1484,6 +1492,13 @@ export declare const ExpoConfigSchema: z.ZodObject<
     ios?:
       | {
           backgroundColor?: string | undefined
+          splash?:
+            | (Record<string, any> & {
+                backgroundColor?: string | undefined
+                resizeMode?: 'cover' | 'contain' | undefined
+                image?: string | undefined
+              } & { tabletImage?: string | undefined })
+            | undefined
           config?:
             | {
                 branch?: { apiKey?: string | undefined } | undefined
@@ -1515,11 +1530,6 @@ export declare const ExpoConfigSchema: z.ZodObject<
           accessesContactNotes?: boolean | undefined
           jsEngine?: 'hermes' | 'jsc' | undefined
           runtimeVersion?: string | { policy: 'sdkVersion' | 'nativeVersion' | 'appVersion' } | undefined
-          splash: Record<string, any> & {
-            backgroundColor?: string | undefined
-            resizeMode?: 'cover' | 'contain' | undefined
-            image?: string | undefined
-          } & { tabletImage?: string | undefined }
         }
       | undefined
     web?:
@@ -1740,7 +1750,7 @@ Validates the provided `config` object against the [Expo Configuration Schema](h
 **Signature**
 
 ```ts
-export declare function validateExpoConfig(config: ExpoConfig, method: 'parse' | 'safeParse' = 'parse')
+export declare function validateExpoConfig(config: ExpoConfig)
 ```
 
 Added in v0.1.0

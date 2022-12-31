@@ -4,12 +4,10 @@ pre-commit:
     lint:
       glob: 'src/**/*.{js,ts,tsx}'
       run: npm run lint
-    format:
-      run: npm run format
     build:
       run: npm run build
-    docs:
-      run: npm run docs
+    prepare-files:
+      run: npx lint-staged
     check-branch:
       run: npm run commit:protect
 commit-msg:
