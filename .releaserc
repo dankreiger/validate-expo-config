@@ -28,6 +28,10 @@
             "release": "patch"
           },
           {
+            "type": "ci",
+            "release": "patch"
+          },
+          {
             "scope": "chore",
             "release": false
           },
