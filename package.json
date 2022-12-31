@@ -1,6 +1,6 @@
 {
   "name": "@dankreiger/validate-expo-config",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Tools for validating Expo app configurations.",
   "keywords": [
     "expo",
