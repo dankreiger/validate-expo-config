@@ -50,11 +50,13 @@ export const iosSchema = z.object({
   usesIcloudStorage: z.boolean().optional(),
   usesAppleSignIn: z.boolean().optional(),
   accessesContactNotes: z.boolean().optional(),
-  splash: splashSchema.and(
-    z.object({
-      tabletImage: z.string().optional(),
-    })
-  ),
+  splash: splashSchema
+    .and(
+      z.object({
+        tabletImage: z.string().optional(),
+      })
+    )
+    .optional(),
   jsEngine: jsEngineSchema.optional(),
   runtimeVersion: runtimeVersionPolicySchema.optional(),
 });

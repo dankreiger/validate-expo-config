@@ -94,35 +94,37 @@ export declare const iosSchema: z.ZodObject<
     usesIcloudStorage: z.ZodOptional<z.ZodBoolean>
     usesAppleSignIn: z.ZodOptional<z.ZodBoolean>
     accessesContactNotes: z.ZodOptional<z.ZodBoolean>
-    splash: z.ZodIntersection<
+    splash: z.ZodOptional<
       z.ZodIntersection<
-        z.ZodRecord<z.ZodString, z.ZodAny>,
+        z.ZodIntersection<
+          z.ZodRecord<z.ZodString, z.ZodAny>,
+          z.ZodObject<
+            {
+              backgroundColor: z.ZodOptional<z.ZodString>
+              resizeMode: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<'cover'>, z.ZodLiteral<'contain'>]>>
+              image: z.ZodOptional<z.ZodString>
+            },
+            'strip',
+            z.ZodTypeAny,
+            {
+              backgroundColor?: string | undefined
+              resizeMode?: 'cover' | 'contain' | undefined
+              image?: string | undefined
+            },
+            {
+              backgroundColor?: string | undefined
+              resizeMode?: 'cover' | 'contain' | undefined
+              image?: string | undefined
+            }
+          >
+        >,
         z.ZodObject<
-          {
-            backgroundColor: z.ZodOptional<z.ZodString>
-            resizeMode: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<'cover'>, z.ZodLiteral<'contain'>]>>
-            image: z.ZodOptional<z.ZodString>
-          },
+          { tabletImage: z.ZodOptional<z.ZodString> },
           'strip',
           z.ZodTypeAny,
-          {
-            backgroundColor?: string | undefined
-            resizeMode?: 'cover' | 'contain' | undefined
-            image?: string | undefined
-          },
-          {
-            backgroundColor?: string | undefined
-            resizeMode?: 'cover' | 'contain' | undefined
-            image?: string | undefined
-          }
+          { tabletImage?: string | undefined },
+          { tabletImage?: string | undefined }
         >
-      >,
-      z.ZodObject<
-        { tabletImage: z.ZodOptional<z.ZodString> },
-        'strip',
-        z.ZodTypeAny,
-        { tabletImage?: string | undefined },
-        { tabletImage?: string | undefined }
       >
     >
     jsEngine: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<'hermes'>, z.ZodLiteral<'jsc'>]>>
@@ -149,6 +151,13 @@ export declare const iosSchema: z.ZodObject<
   z.ZodTypeAny,
   {
     backgroundColor?: string | undefined
+    splash?:
+      | (Record<string, any> & {
+          backgroundColor?: string | undefined
+          resizeMode?: 'cover' | 'contain' | undefined
+          image?: string | undefined
+        } & { tabletImage?: string | undefined })
+      | undefined
     config?:
       | {
           branch?: { apiKey?: string | undefined } | undefined
@@ -180,14 +189,16 @@ export declare const iosSchema: z.ZodObject<
     accessesContactNotes?: boolean | undefined
     jsEngine?: 'hermes' | 'jsc' | undefined
     runtimeVersion?: string | { policy: 'sdkVersion' | 'nativeVersion' | 'appVersion' } | undefined
-    splash: Record<string, any> & {
-      backgroundColor?: string | undefined
-      resizeMode?: 'cover' | 'contain' | undefined
-      image?: string | undefined
-    } & { tabletImage?: string | undefined }
   },
   {
     backgroundColor?: string | undefined
+    splash?:
+      | (Record<string, any> & {
+          backgroundColor?: string | undefined
+          resizeMode?: 'cover' | 'contain' | undefined
+          image?: string | undefined
+        } & { tabletImage?: string | undefined })
+      | undefined
     config?:
       | {
           branch?: { apiKey?: string | undefined } | undefined
@@ -219,11 +230,6 @@ export declare const iosSchema: z.ZodObject<
     accessesContactNotes?: boolean | undefined
     jsEngine?: 'hermes' | 'jsc' | undefined
     runtimeVersion?: string | { policy: 'sdkVersion' | 'nativeVersion' | 'appVersion' } | undefined
-    splash: Record<string, any> & {
-      backgroundColor?: string | undefined
-      resizeMode?: 'cover' | 'contain' | undefined
-      image?: string | undefined
-    } & { tabletImage?: string | undefined }
   }
 >
 ```

@@ -1,0 +1,6 @@
+{
+  "*": [
+    "npm run docs",
+    "npm run format"
+  ]
+}

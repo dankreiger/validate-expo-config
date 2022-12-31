@@ -23,25 +23,12 @@ For more fine-grained control, you can use the `ExpoConfigSchema` directly.
 import type { ExpoConfig } from '@expo/config';
 import { validateExpoConfig } from '@expo-tools/validate-config';
 
-validateExpoConfig(config: ExpoConfig); // throws if invalid (can use `safeParse` or anything else from `zod`)
+validateExpoConfig(config: ExpoConfig); // throws if invalid
 ```
 
-| Parameter | Type            | Description                                              |
-| :-------- | :-------------- | :------------------------------------------------------- |
-| `config`  | `ExpoConfig`    | **Required**. Expo App config object from `@expo/config` |
-| `opts`    | `TValidateOpts` | **Optional**. See `ValidateOpts` definition below        |
-
-```ts
-type TValidateOpts = {
-  /**
-   * validation method to use
-   * @see https://github.com/colinhacks/zod#schema-methods
-   *
-   * @default 'parse'
-   */
-  zodMethod: 'parse' | 'safeParse';
-};
-```
+| Parameter | Type         | Description                                              |
+| :-------- | :----------- | :------------------------------------------------------- |
+| `config`  | `ExpoConfig` | **Required**. Expo App config object from `@expo/config` |
 
 ### `ExpoConfigSchema`
 
