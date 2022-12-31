@@ -136,10 +136,7 @@ export const ExpoConfigSchema = z.object({
  *   console.log('The config object is invalid:', validationResult);
  * }
  */
-export function validateExpoConfig(config: ExpoConfig) {
-  if (!config) {
-    return false;
-  }
+export function validateExpoConfig(config: ExpoConfig): ExpoConfig {
   const result = ExpoConfigSchema.safeParse(config);
   if (result.success) {
     return result.data;

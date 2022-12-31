@@ -1750,7 +1750,7 @@ Validates the provided `config` object against the [Expo Configuration Schema](h
 **Signature**
 
 ```ts
-export declare function validateExpoConfig(config: ExpoConfig)
+export declare function validateExpoConfig(config: ExpoConfig): ExpoConfig
 ```
 
 Added in v0.1.0
