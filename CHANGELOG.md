@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/dankreiger/validate-expo-config/compare/v1.0.0...v1.0.1) (2022-12-31)
+
+
+### Features
+
+* publish config ([#6](https://github.com/dankreiger/validate-expo-config/issues/6)) ([0179a27](https://github.com/dankreiger/validate-expo-config/commit/0179a27b9fda65f7eb15a1d83ef9c1d90c2a9261))
+
 # 1.0.0 (2022-12-31)
 
 
